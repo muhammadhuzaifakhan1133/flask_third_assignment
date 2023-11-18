@@ -1,12 +1,16 @@
 from flask import Flask
-from controllers.notes import notes
-from controllers.users.users import user_bp
-from controllers.notes.notes import note_bp
+from routes.users import users_router_list
+from routes.notes import notes_router_list
 
 app = Flask(__name__)
 
-app.register_blueprint(user_bp)
-app.register_blueprint(note_bp)
+# users routes
+for route in users_router_list:
+    app.register_blueprint(route)
+
+# notes routes
+for route in notes_router_list:
+    app.register_blueprint(route)
 
 
 if __name__  == "__main__":
